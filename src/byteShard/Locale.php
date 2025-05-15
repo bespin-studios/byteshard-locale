@@ -97,7 +97,7 @@ class Locale
      * @param null|string $locale
      * @return array
      */
-    static private function getLanguageArray(string $token, string $locale = null): array
+    static private function getLanguageArray(string $token, ?string $locale = null): array
     {
         if ($locale === null && class_exists('\byteShard\Session') && method_exists('\byteShard\Session', 'getLocale')) {
             $locale = Session::getLocale();
@@ -198,7 +198,7 @@ class Locale
      * @param string|null $locale
      * @return array
      */
-    static public function getArray(string $token, string $locale = null): array
+    static public function getArray(string $token, ?string $locale = null): array
     {
         $locale_array          = [];
         $locale_array['found'] = false;
@@ -292,7 +292,7 @@ class Locale
      * @param string|null $locale
      * @return string
      */
-    static public function get(string $token, string $locale = null): string
+    static public function get(string $token, ?string $locale = null): string
     {
         $array = self::getArray($token, $locale);
         return $array['locale'];
