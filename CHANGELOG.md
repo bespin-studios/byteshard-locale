@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/bespin-studios/byteshard-locale/compare/v1.0.1...v1.0.2) (2025-05-27)
+
+
+### Bug Fixes
+
+* pipeline and php 8.4 warnings ([092d4ed](https://github.com/bespin-studios/byteshard-locale/commit/092d4ed73a3d6e7a0a33373d0738a9b3f6eae5c3))
+
 ## [1.0.1](https://github.com/byteshard/locale/compare/v1.0.0...v1.0.1) (2023-05-08)
 
 
