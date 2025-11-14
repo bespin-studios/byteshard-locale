@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/bespin-studios/byteshard-locale/compare/v1.0.2...v1.1.0) (2025-11-14)
+
+
+### Features
+
+* add single point for scope locale token generation ([f006667](https://github.com/bespin-studios/byteshard-locale/commit/f00666797cbe033c08f1056fcfa840a36e64d5f2))
+
 ## [1.0.2](https://github.com/bespin-studios/byteshard-locale/compare/v1.0.1...v1.0.2) (2025-05-27)
 
 
