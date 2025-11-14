@@ -97,7 +97,7 @@ class Locale
      * @param null|string $locale
      * @return array
      */
-    static private function getLanguageArray(string $token, ?string $locale = null): array
+    private static function getLanguageArray(string $token, ?string $locale = null): array
     {
         if ($locale === null && class_exists('\byteShard\Session') && method_exists('\byteShard\Session', 'getLocale')) {
             $locale = Session::getLocale();
@@ -131,7 +131,7 @@ class Locale
      * @param array $locale_namespace
      * @return array
      */
-    static private function getByteShardLanguageArray(array $languages, string $token, array $locale_namespace): array
+    private static function getByteShardLanguageArray(array $languages, string $token, array $locale_namespace): array
     {
         $app_tokens = array($token);
         if (str_contains($token, '::')) {
@@ -171,7 +171,7 @@ class Locale
      * @param string $application_locale_namespace
      * @return array
      */
-    static private function getApplicationLanguageArray(array $languages, string $token, string $application_locale_namespace): array
+    private static function getApplicationLanguageArray(array $languages, string $token, string $application_locale_namespace): array
     {
         $app_tokens = array($token);
         if (defined('DEBUG_LOCALE') && DEBUG_LOCALE === true) {
@@ -198,7 +198,7 @@ class Locale
      * @param string|null $locale
      * @return array
      */
-    static public function getArray(string $token, ?string $locale = null): array
+    public static function getArray(string $token, ?string $locale = null): array
     {
         $locale_array          = [];
         $locale_array['found'] = false;
@@ -258,7 +258,7 @@ class Locale
      * @param string|null $token
      * @return string
      */
-    static private function appendLocale(?string $locale, ?string $token): string
+    private static function appendLocale(?string $locale, ?string $token): string
     {
         $prefix = '';
         if (defined('DEBUG_LOCALE') && DEBUG_LOCALE === true) {
@@ -292,7 +292,7 @@ class Locale
      * @param string|null $locale
      * @return string
      */
-    static public function get(string $token, ?string $locale = null): string
+    public static function get(string $token, ?string $locale = null): string
     {
         $array = self::getArray($token, $locale);
         return $array['locale'];
@@ -302,7 +302,7 @@ class Locale
      * @param string $locale
      * @return string
      */
-    static public function getLocaleName(string $locale): string
+    public static function getLocaleName(string $locale): string
     {
         $language_array        = [];
         $tmp                   = explode('_', $locale);
@@ -333,7 +333,7 @@ class Locale
      * @param string $token
      * @return string|null
      */
-    static public function getBaseLocale(string $token): ?string
+    public static function getBaseLocale(string $token): ?string
     {
         $colon  = strpos($token, '::');
         $period = strpos($token, '.');
@@ -341,5 +341,26 @@ class Locale
             return substr($token, 0, $colon);
         }
         return null;
+    }
+
+    public static function getScopeLocaleTokenBasedOnNamespace(object $class, ?string $type = null): string
+    {
+        $parts     = explode('\\', get_class($class));
+        if (count($parts) > 2) {
+            if (strtolower($parts[0]) === 'app') {
+                if ($type === null) {
+                    $type = $parts[1];
+                }
+                switch (strtolower($parts[1])) {
+                    case 'cell':
+                        $cell = array_pop($parts);
+                        return implode('_', $parts).'::'.$type.'.'.$cell;
+                    case 'tab':
+                    case 'popup':
+                        return implode('_', $parts).'::'.$type;
+                }
+            }
+        }
+        return '';
     }
 }
