@@ -351,7 +351,8 @@ class Locale
                 if ($type === null) {
                     $type = $parts[1];
                 }
-                switch (strtolower($parts[1])) {
+                array_splice($parts, 0, 2);
+                switch (strtolower($type)) {
                     case 'cell':
                         $cell = array_pop($parts);
                         return implode('_', $parts).'::'.$type.'.'.$cell;
