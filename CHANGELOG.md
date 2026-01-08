@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/bespin-studios/byteshard-locale/compare/v1.1.0...v1.1.1) (2026-01-08)
+
+
+### Bug Fixes
+
+* incorrect locale scope ([82437cc](https://github.com/bespin-studios/byteshard-locale/commit/82437cc28cced2cc2faae5ff094edea65d063467))
+
 # [1.1.0](https://github.com/bespin-studios/byteshard-locale/compare/v1.0.2...v1.1.0) (2025-11-14)
 
 
